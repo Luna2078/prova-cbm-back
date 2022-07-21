@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Factories\PerfilFactory;
 use App\Http\Requests\PerfilRequest;
 use App\Http\Resources\PerfilResource;
 use App\Services\PerfilService;
@@ -31,8 +32,7 @@ class PerfilController extends Controller
    */
   public function criarPerfil(PerfilRequest $request): JsonResponse
   {
-    
-    return (new PerfilResource($this->service->criarPerfil($request)))
+    return (new PerfilResource($this->service->criarPerfil(PerfilFactory::toDTO($request->toArray()))))
      ->response()->setStatusCode(Response::HTTP_CREATED);
   }
 }

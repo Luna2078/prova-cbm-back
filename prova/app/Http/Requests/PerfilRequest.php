@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class PerfilRequest extends FormRequest
 {
@@ -24,14 +27,19 @@ class PerfilRequest extends FormRequest
   public function rules(): array
   {
     return [
-     'tipo_sanguineo_id' => 'required|int',
+     'tipos_sanguineo_id' => 'required|int',
      'signo_id' => 'required|int',
-     'cpf' => 'required|max:11',
-     'nome' => 'required|string',
-     'data_nascimento' => 'required|date|date_format:d-m-Y',
-     'email' => 'required|string',
-     'telefone' => 'required|string',
-     'resumo' => 'nullable|string'
+     'cpf' => 'required|max:14|min:11',
+     'nome' => 'required|string|max:50',
+     'data_nascimento' => 'required|date|date_format:Y-m-d',
+     'email' => 'required|string|max:45',
+     'telefone' => 'required|max:15|min:11',
+     'resumo' => 'nullable|text'
     ];
+  }
+  
+  protected function failedValidation(Validator $validator)
+  {
+    throw new HttpResponseException(response()->json($validator->errors(), ResponseAlias::HTTP_UNPROCESSABLE_ENTITY));
   }
 }

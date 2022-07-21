@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DTO\PerfilDTO;
 use App\Models\Instituicao;
 use App\Models\Perfil;
 use Exception;
@@ -17,23 +18,22 @@ class PerfilService
   /**
    * @throws Exception
    */
-  public function criarPerfil(array $perfil): Perfil
+  public function criarPerfil(PerfilDTO $perfil): Perfil
   {
-    $cpfFormatado = $this->formatarDados($perfil['cpf']);
-    $telefoneFormatado = $this->formatarDados($perfil['telefone']);
+    $cpfFormatado = $this->formatarDados($perfil->cpf);
+    $telefoneFormatado = $this->formatarDados($perfil->telefone);
     $novoPerfil = new Perfil();
-    $novoPerfil->tipo_sanguineo_id = $perfil['tipo_sanguineo_id'];
-    $novoPerfil->signo_id = $perfil['signo_id'];
+    $novoPerfil->tipos_sanguineo_id = $perfil->tiposSanguineoEnum;
+    $novoPerfil->signo_id = $perfil->signoEnum;
     $novoPerfil->cpf = $cpfFormatado;
-    $novoPerfil->nome = $perfil['nome'];
-    $novoPerfil->data_nascimento = $perfil['data_nascimento'];
-    if (!($novoPerfil->data_nascimento->age() >= 18)){
+    $novoPerfil->nome = $perfil->nome;
+    $novoPerfil->data_nascimento = $perfil->data_nascimento;
+    if (!($novoPerfil->data_nascimento->age >= 18)){
       throw new Exception('A idade precisa ser superior a 18 anos.',404);
     }
-    $novoPerfil->email = $perfil['email'];
+    $novoPerfil->email = $perfil->email;
     $novoPerfil->telefone = $telefoneFormatado;
     $novoPerfil->save();
-    dd($novoPerfil);
     return $novoPerfil;
   }
   
