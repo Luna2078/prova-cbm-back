@@ -12,9 +12,16 @@ return new class extends Migration {
    */
   public function up()
   {
-    Schema::create('signos', function (Blueprint $table) {
+    Schema::create('experiencias', function (Blueprint $table) {
       $table->id()->autoIncrement()->primary();
-      $table->string('nome', 45);
+      $table->integer('perfil_id');
+      $table->foreign('perfil_id')->references('id')->on('perfis')
+       ->onUpdate('RESTRICT')->onDelete('RESTRICT');
+      $table->string('empresa',45);
+      $table->date('inicio');
+      $table->date('fim');
+      $table->boolean('atual_trabalho');
+      $table->string('cargo',255);
       $table->timestamps();
     });
   }
@@ -26,6 +33,6 @@ return new class extends Migration {
    */
   public function down()
   {
-    Schema::dropIfExists('signos');
+    Schema::dropIfExists('experiencias');
   }
 };

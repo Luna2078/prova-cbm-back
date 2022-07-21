@@ -12,9 +12,9 @@ return new class extends Migration {
    */
   public function up()
   {
-    Schema::create('signos', function (Blueprint $table) {
-      $table->id()->autoIncrement()->primary();
-      $table->string('nome', 45);
+    Schema::create('instituicoes', function (Blueprint $table) {
+      $table->id()->primary();
+      $table->string('nome', 255);
       $table->timestamps();
     });
   }
@@ -26,6 +26,6 @@ return new class extends Migration {
    */
   public function down()
   {
-    Schema::dropIfExists('signos');
+    Schema::dropIfExists('instituicoes');
   }
 };
