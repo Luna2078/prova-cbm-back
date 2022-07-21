@@ -25,4 +25,5 @@ Route::prefix('prova')->group(function () {
   Route::get('competencias', Competencias::class);
   Route::get('perfis', [PerfilController::class,'listarPerfis']);
   Route::post('perfis', [PerfilController::class,'criarPerfil']);
+  Route::delete('perfis', [PerfilController::class,'apagarPerfil']);
 });

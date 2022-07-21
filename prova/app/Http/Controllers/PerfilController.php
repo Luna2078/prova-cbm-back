@@ -22,7 +22,7 @@ class PerfilController extends Controller
    */
   public function listarPerfis(): JsonResponse
   {
-    return response()->json([$this->service->listarPerfis()], Response::HTTP_OK);
+    return response()->json([$this->service->listarPerfis()],Response::HTTP_OK);
   }
   
   /**
@@ -34,5 +34,16 @@ class PerfilController extends Controller
   {
     return (new PerfilResource($this->service->criarPerfil(PerfilFactory::toDTO($request->toArray()))))
      ->response()->setStatusCode(Response::HTTP_CREATED);
+  }
+  
+  public function apagarPerfil(int $perfil_id)
+  {
+    return response()->json([$this->service->apagarPerfil($perfil_id)],Response::HTTP_OK);
+  }
+  
+  public function atualizarPerfil(PerfilRequest $request, int $perfil_id)
+  {
+    return (new PerfilResource($this->service->atualizarPerfil(PerfilFactory::toDTO($request->toArray()),$perfil_id)))
+     ->response()->setStatusCode(Response::HTTP_OK);
   }
 }

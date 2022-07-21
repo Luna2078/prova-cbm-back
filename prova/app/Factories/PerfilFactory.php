@@ -12,8 +12,8 @@ class PerfilFactory
   public static function toDTO(array $dados)
   {
   return new PerfilDTO(
-   tiposSanguineoEnum: TiposSanguineoEnum::from($dados['tipos_sanguineo_id']),
-   signoEnum: SignoEnum::from($dados['signo_id']),
+   tipos_sanguineo_enum: TiposSanguineoEnum::from($dados['tipos_sanguineo_id']),
+   signo_enum: SignoEnum::from($dados['signo_id']),
    cpf: $dados['cpf'],
    nome: $dados['nome'],
    data_nascimento: Carbon::createFromFormat('Y-m-d',$dados['data_nascimento']),
