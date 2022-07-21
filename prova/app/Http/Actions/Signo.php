@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Actions;
 
+use App\Http\Controllers\Controller;
 use App\Services\SignoService;
-use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class SignoController extends Controller
+class Signo extends Controller
 {
   public function __construct(private readonly SignoService $service)
   {
   }
   
-  public function listarSignos(): JsonResponse
+  public function __invoke(): JsonResponse
   {
    return response()->json([$this->service->listarSignos()], Response::HTTP_OK);
   }

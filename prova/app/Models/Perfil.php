@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Enums\SignoEnum;
-use App\Enums\TipoSanguineoEnum;
+use App\Enums\TiposSanguineoEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @property TipoSanguineoEnum $tipo_sanguineo_id
+ * @property TiposSanguineoEnum $tipos_sanguineo_id
  * @property SignoEnum $signo_id
  * @property string $cpf
  * @property string $nome
@@ -21,11 +22,12 @@ use Illuminate\Database\Eloquent\Model;
 class Perfil extends Model
 {
   use HasFactory;
+  use SoftDeletes;
   
   protected $table = 'perfis';
   protected $primaryKey = 'id';
   protected $fillable = [
-   'tipo_sanguineo_id',
+   'tipos_sanguineo_id',
    'signo_id',
    'cpf',
    'nome',
@@ -36,29 +38,31 @@ class Perfil extends Model
   ];
   protected $visible = [
    'id',
-   'tipo_sanguineo_id',
+   'tipos_sanguineo_id',
    'signo_id',
    'cpf',
    'nome',
    'data_nascimento',
    'email',
    'telefone',
-   'resumo'
+   'resumo',
+   'created_at',
+   'updated_at'
   ];
   protected $casts = [
-   'tipo_sanguineo_id' => TipoSanguineoEnum::class,
+   'tipos_sanguineo_id' => TiposSanguineoEnum::class,
    'signo_id' => SignoEnum::class,
    'data_nascimento' => 'datetime',
   ];
   
   public function tipoSanguineo()
   {
-    return $this->hasOne(TipoSanguineo::class,'id','tipo_sanguineo_id');
+    return $this->hasOne(TipoSanguineo::class, 'id', 'tipos_sanguineo_id');
   }
   
   public function signo()
   {
-    return $this->hasOne(Signo::class,'id','signo_id');
+    return $this->hasOne(Signo::class, 'id', 'signo_id');
   }
   
 }

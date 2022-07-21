@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\CompetenciasController;
-use App\Http\Controllers\InstituicoesController;
+use App\Http\Actions\Competencias;
+use App\Http\Actions\Instituicoes;
+use App\Http\Actions\Signo;
+use App\Http\Actions\TipoSanguineos;
 use App\Http\Controllers\PerfilController;
-use App\Http\Controllers\TipoSanguineosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('prova/')->group(function () {
-  Route::get('signos', [CompetenciasController::class, 'listarSignos']);
-  Route::get('tipo-sanguineos', [TipoSanguineosController::class, 'listarTiposSanguineos']);
-  Route::get('instituicoes', [InstituicoesController::class, 'listarInstituicoes']);
-  Route::get('competencias', [CompetenciasController::class, 'listarCompetencias']);
-  Route::get('listarPerfis', [PerfilController::class, 'listarPerfis']);
-  Route::post('criarPerfil', [PerfilController::class, 'criarPerfil']);
+Route::prefix('prova')->group(function () {
+  Route::get('signos', Signo::class);
+  Route::get('tipo-sanguineos', TipoSanguineos::class);
+  Route::get('instituicoes', Instituicoes::class);
+  Route::get('competencias', Competencias::class);
+  Route::get('perfis', [PerfilController::class,'listarPerfis']);
+  Route::post('perfis', [PerfilController::class,'criarPerfil']);
 });
