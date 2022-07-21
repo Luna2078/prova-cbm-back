@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Actions;
 
+use App\Http\Controllers\Controller;
 use App\Services\InstituicoesService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
-class InstituicoesController extends Controller
+class Instituicoes extends Controller
 {
   public function __construct(private readonly InstituicoesService $service)
   {
   }
   
-  public function listarInstituicoes(): JsonResponse
+  public function __invoke(): JsonResponse
   {
    return response()->json([$this->service->listarInstituicoes()], Response::HTTP_OK);
   }

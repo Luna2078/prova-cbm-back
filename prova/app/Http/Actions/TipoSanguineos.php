@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Actions;
 
-use App\Services\SignoService;
+use App\Http\Controllers\Controller;
 use App\Services\TipoSanguineoService;
-use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class TipoSanguineosController extends Controller
+class TipoSanguineos extends Controller
 {
   public function __construct(private readonly TipoSanguineoService $service)
   {
   }
   
-  public function listarTiposSanguineos(): JsonResponse
+  public function __invoke(): JsonResponse
   {
    return response()->json([$this->service->listarTiposSanguineos()], Response::HTTP_OK);
   }

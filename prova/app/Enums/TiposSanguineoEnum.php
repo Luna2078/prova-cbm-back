@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum TipoSanguineoEnum :int
+enum TiposSanguineoEnum :int
 {
   case APositivo = 1;
   case BPositivo = 2;
