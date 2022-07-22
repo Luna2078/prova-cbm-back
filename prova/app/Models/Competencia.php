@@ -15,4 +15,9 @@ class Competencia extends Model
    'id',
    'nome'
   ];
+  
+  public function perfil()
+  {
+    
+  }
 }

@@ -15,4 +15,9 @@ class Instituicao extends Model
    'id',
    'nome'
   ];
+  
+  public function formacao()
+  {
+    return $this->belongsTo(Formacao::class,'instituicao_id');
+  }
 }

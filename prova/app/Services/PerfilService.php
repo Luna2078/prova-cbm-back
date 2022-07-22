@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\DTO\PerfilDTO;
-use App\Models\Perfil;
+use App\Models\Formacao;
 use Exception;
 use Illuminate\Contracts\Pagination\Paginator;
 
@@ -11,13 +11,13 @@ class PerfilService
 {
   public function listarPerfis(): Paginator
   {
-    return Perfil::query()->simplePaginate();
+    return Formacao::query()->simplePaginate();
   }
   
   /**
    * @throws Exception
    */
-  public function criarPerfil(PerfilDTO $perfilDTO): Perfil
+  public function criarPerfil(PerfilDTO $perfilDTO): Formacao
   {
     if (!($perfilDTO->data_nascimento->age >= 18)) {
       throw new Exception('A idade precisa ser superior a 18 anos.', 404);
@@ -29,12 +29,12 @@ class PerfilService
   
   public function apagarPerfil(int $perfil_id): bool
   {
-    return Perfil::query()->find($perfil_id)->delete();
+    return Formacao::query()->find($perfil_id)->delete();
   }
   
   public function atualizarPerfil(PerfilDTO $perfilDTO, int $perfil_id)
   {
-    $perfil = Perfil::query()->find($perfil_id);
+    $perfil = Formacao::query()->find($perfil_id);
     $perfil->update($perfilDTO->toArray());
     return $perfil;
   }
@@ -50,11 +50,11 @@ class PerfilService
   
   /**
    * @param PerfilDTO $perfilDTO
-   * @return Perfil
+   * @return Formacao
    */
-  private function obterDados(PerfilDTO $perfilDTO): Perfil
+  private function obterDados(PerfilDTO $perfilDTO): Formacao
   {
-    $novoPerfil = new Perfil();
+    $novoPerfil = new Formacao();
     $novoPerfil->tipos_sanguineo_id = $perfilDTO->tipos_sanguineo_enum;
     $novoPerfil->signo_id = $perfilDTO->signo_enum;
     $novoPerfil->cpf = $this->formatarDados($perfilDTO->cpf);

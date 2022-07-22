@@ -65,4 +65,9 @@ class Perfil extends Model
     return $this->hasOne(Signo::class, 'id', 'signo_id');
   }
   
+  public function competencia()
+  {
+    return $this->hasMany(Competencia::class);
+  }
+  
 }
