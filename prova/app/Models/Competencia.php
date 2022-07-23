@@ -13,11 +13,12 @@ class Competencia extends Model
   protected $primaryKey = 'id';
   protected $visible = [
    'id',
-   'nome'
+   'nome',
+   'competenciaPerfis'
   ];
   
-  public function perfil()
+  public function competenciaPerfis()
   {
-    
+    return $this->belongsToMany(CompetenciaPerfis::class, 'competencias_perfis');
   }
 }

@@ -47,7 +47,11 @@ class Perfil extends Model
    'telefone',
    'resumo',
    'created_at',
-   'updated_at'
+   'updated_at',
+   'tipoSanguineo',
+   'signo',
+   'competenciaPerfis',
+   'experiencia'
   ];
   protected $casts = [
    'tipos_sanguineo_id' => TiposSanguineoEnum::class,
@@ -65,9 +69,13 @@ class Perfil extends Model
     return $this->hasOne(Signo::class, 'id', 'signo_id');
   }
   
-  public function competencia()
+  public function competenciaPerfis()
   {
-    return $this->hasMany(Competencia::class);
+    return $this->belongsToMany(CompetenciaPerfis::class, 'competencias_perfis');
   }
   
+  public function experiencia()
+  {
+    return $this->hasMany(Experiencia::class);
+  }
 }

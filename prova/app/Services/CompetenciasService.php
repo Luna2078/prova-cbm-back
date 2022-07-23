@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Models\Competencia;
+use App\Models\CompetenciaPerfis;
 use Illuminate\Contracts\Pagination\Paginator;
 
 class CompetenciasService
 {
   public function listarCompetencias(): Paginator
   {
-    return Competencia::query()->simplePaginate();
+    return CompetenciaPerfis::query()->simplePaginate();
   }
   
 }

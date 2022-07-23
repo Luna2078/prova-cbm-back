@@ -13,6 +13,7 @@ return new class extends Migration {
   public function up()
   {
     Schema::create('competencias_perfis', function (Blueprint $table) {
+      $table->id()->primary()->autoIncrement();
       $table->integer('competencia_id');
       $table->foreign('competencia_id')->references('id')->on('competencias')
        ->onUpdate('RESTRICT')->onDelete('RESTRICT');

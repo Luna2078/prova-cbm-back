@@ -26,6 +26,7 @@ class Experiencia extends Model
   protected $table = 'experiencias';
   protected $primaryKey = 'id';
   protected $fillable = [
+   'perfil_id',
    'empresa',
    'inicio',
    'fim',
@@ -41,7 +42,8 @@ class Experiencia extends Model
    'atual_trabalho',
    'cargo',
    'created_at',
-   'updated_at'
+   'updated_at',
+   'perfil'
   ];
   protected $casts = [
    'inicio', 'fim' => 'datetime',
