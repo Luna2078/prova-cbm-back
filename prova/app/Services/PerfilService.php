@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\DTO\ExperienciaDTO;
+use App\DTO\FormacaoDTO;
 use App\DTO\PerfilDTO;
-use App\Models\Formacao;
+use App\Models\Experiencia;
+use App\Models\Perfil;
 use Exception;
 use Illuminate\Contracts\Pagination\Paginator;
 
@@ -11,30 +14,31 @@ class PerfilService
 {
   public function listarPerfis(): Paginator
   {
-    return Formacao::query()->simplePaginate();
+    return Perfil::query()->simplePaginate();
   }
   
   /**
    * @throws Exception
    */
-  public function criarPerfil(PerfilDTO $perfilDTO): Formacao
+  public function fluxoPerfil(PerfilDTO $perfilDTO): PerfilDTO
   {
     if (!($perfilDTO->data_nascimento->age >= 18)) {
       throw new Exception('A idade precisa ser superior a 18 anos.', 404);
     }
-    $novoPerfil = $this->obterDados($perfilDTO);
-    $novoPerfil->save();
-    return $novoPerfil;
+    $this->cadastrarPerfil($perfilDTO);
+    $this->cadastrarExperiencia($perfilDTO->experiencias);
+    $this->cadastrarFormacao($perfilDTO->formacao);
+    return $perfilDTO;
   }
   
   public function apagarPerfil(int $perfil_id): bool
   {
-    return Formacao::query()->find($perfil_id)->delete();
+    return Perfil::query()->find($perfil_id)->delete();
   }
   
   public function atualizarPerfil(PerfilDTO $perfilDTO, int $perfil_id)
   {
-    $perfil = Formacao::query()->find($perfil_id);
+    $perfil = Perfil::query()->find($perfil_id);
     $perfil->update($perfilDTO->toArray());
     return $perfil;
   }
@@ -50,18 +54,37 @@ class PerfilService
   
   /**
    * @param PerfilDTO $perfilDTO
-   * @return Formacao
+   * @return Perfil
    */
-  private function obterDados(PerfilDTO $perfilDTO): Formacao
+  private function cadastrarPerfil(PerfilDTO $perfilDTO): Perfil
   {
-    $novoPerfil = new Formacao();
-    $novoPerfil->tipos_sanguineo_id = $perfilDTO->tipos_sanguineo_enum;
-    $novoPerfil->signo_id = $perfilDTO->signo_enum;
-    $novoPerfil->cpf = $this->formatarDados($perfilDTO->cpf);
-    $novoPerfil->nome = $perfilDTO->nome;
-    $novoPerfil->data_nascimento = $perfilDTO->data_nascimento;
-    $novoPerfil->email = $perfilDTO->email;
-    $novoPerfil->telefone = $this->formatarDados($perfilDTO->telefone);
-    return $novoPerfil;
+    return Perfil::query()->create([
+     'tipos_sanguineo_id' => $perfilDTO->tipos_sanguineo_enum,
+     'signo_id' => $perfilDTO->signo_enum,
+     'cpf' => $this->formatarDados($perfilDTO->cpf),
+     'nome' => $perfilDTO->nome,
+     'data_nascimento' => $perfilDTO->data_nascimento,
+     'email' => $perfilDTO->email,
+     'telefone' => $this->formatarDados($perfilDTO->telefone)])->get()->first();
+  }
+  
+  private function cadastrarExperiencia(array $experiencoesArray): array
+  {
+    $experienciasDTO = [];
+    /** @var ExperienciaDTO $experiencia */
+    foreach ($experiencoesArray as $experiencia) {
+      $experienciasDTO[] = Experiencia::query()->insert($experiencia->toArray());
+    }
+    return $experienciasDTO;
+  }
+  
+  private function cadastrarFormacao(array $formacoesArray):array
+  {
+    $formacoesDTO = [];
+    /** @var FormacaoDTO $formacao */
+    foreach ($formacoesArray as $formacao) {
+      $formacoesDTO[] = Experiencia::query()->insert($formacao->toArray());
+    }
+    return $formacoesDTO;
   }
 }

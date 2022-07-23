@@ -32,7 +32,7 @@ class PerfilController extends Controller
    */
   public function criarPerfil(PerfilRequest $request): JsonResponse
   {
-    return (new PerfilResource($this->service->criarPerfil(PerfilFactory::toDTO($request->toArray()))))
+    return (new PerfilResource($this->service->fluxoPerfil(PerfilFactory::toDTO($request->toArray()))))
      ->response()->setStatusCode(Response::HTTP_CREATED);
   }
   

@@ -23,6 +23,8 @@ class Formacao extends Model
   protected $table = 'formacao';
   protected $primaryKey = 'id';
   protected $fillable = [
+   'instituicao_id',
+   'perfil_id',
    'nome'
   ];
   protected $visible = [
@@ -31,12 +33,14 @@ class Formacao extends Model
    'perfil_id',
    'nome',
    'created_at',
-   'updated_at'
+   'updated_at',
+   'instituicao',
+   'perfil'
   ];
   
   public function instituicao()
   {
-    return $this->hasOne(Instituicao::class,'id','instituicao_id');
+    return $this->hasOne(Instituicao::class, 'id', 'instituicao_id');
   }
   
   public function perfil()

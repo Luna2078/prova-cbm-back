@@ -34,6 +34,8 @@ class PerfilRequest extends FormRequest
      'data_nascimento' => 'required|date|date_format:Y-m-d',
      'email' => 'required|string|max:45',
      'telefone' => 'required|max:15|min:11',
+     'experiencia' => 'required|array',
+     'formacao' => 'required|array',
      'resumo' => 'nullable|text'
     ];
   }
