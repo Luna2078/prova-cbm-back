@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('competencias', function (Blueprint $table) {
-            $table->id()->autoIncrement()->primary();
+            $table->integer('id', true);
             $table->string('nome',45);
             $table->timestamps();
         });

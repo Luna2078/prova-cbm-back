@@ -13,7 +13,7 @@ return new class extends Migration {
   public function up()
   {
     Schema::create('perfis', function (Blueprint $table) {
-      $table->id()->autoIncrement()->primary();
+      $table->integer('id', true);
       $table->integer('tipos_sanguineo_id');
       $table->foreign('tipos_sanguineo_id')->references('id')->on('tipos_sanguineos')
        ->onUpdate('RESTRICT')->onDelete('RESTRICT');

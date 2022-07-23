@@ -13,7 +13,7 @@ return new class extends Migration {
   public function up()
   {
     Schema::create('instituicoes', function (Blueprint $table) {
-      $table->id()->primary();
+      $table->integer('id', true);
       $table->string('nome', 255);
       $table->timestamps();
     });

@@ -17,66 +17,53 @@ class SignoSeeder extends Seeder
   {
     DB::table('signos')->insert([
      [
-     "id" => 1,
-     "created_at" => now(),
-     "updated_at" => now(),
-     "nome" => "Áries"
-    ],[
-      "id" => 2,
+      "nome" => "Áries",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "Touro"
-    ],[
-      "id" => 3,
+      "updated_at" => now()
+     ], [
+      "nome" => "Touro",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "Gêmeos"
-    ],[
-      "id" => 4,
+      "updated_at" => now()
+     ], [
+      "nome" => "Gêmeos",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "Câncer"
-    ],[
-      "id" => 5,
+      "updated_at" => now()
+     ], [
+      "nome" => "Câncer",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "Leão"
-    ],[
-      "id" => 6,
+      "updated_at" => now()
+     ], [
+      "nome" => "Leão",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "Virgem"
-    ],[
-      "id" => 7,
+      "updated_at" => now()
+     ], [
+      "nome" => "Virgem",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "Libra"
-    ],[
-      "id" => 8,
+      "updated_at" => now()
+     ], [
+      "nome" => "Libra",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "Escorpião"
-    ],[
-      "id" => 9,
+      "updated_at" => now()
+     ], [
+      "nome" => "Escorpião",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "Sagitário"
-    ],[
-      "id" => 10,
+      "updated_at" => now()
+     ], [
+      "nome" => "Sagitário",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "Capricórnio"
-    ],[
-      "id" => 11,
+      "updated_at" => now()
+     ], [
+      "nome" => "Capricórnio",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "Aquário"
-    ],
-     [
-      "id" => 12,
+      "updated_at" => now()
+     ], [
+      "nome" => "Aquário",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "Peixes"
+      "updated_at" => now()
+     ], [
+      "nome" => "Peixes",
+      "created_at" => now(),
+      "updated_at" => now()
      ]
     ]);
   }

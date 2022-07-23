@@ -17,30 +17,25 @@ class InstituicoesSeeder extends Seeder
   {
     DB::table('instituicoes')->insert([
      [
-      "id" => 1,
+      "nome" => "FANESE",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "FANESE"
+      "updated_at" => now()
      ],[
-      "id" => 2,
+      "nome" => "UFS",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "UFS"
+      "updated_at" => now()
      ],[
-      "id" => 3,
+      "nome" => "UNIT",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "UNIT"
+      "updated_at" => now()
      ],[
-      "id" => 4,
+      "nome" => "NASSAU",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "NASSAU"
+      "updated_at" => now()
      ],[
-      "id" => 5,
+      "nome" => "PIO X",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "PIO X"
+      "updated_at" => now()
      ]
     ]);
   }

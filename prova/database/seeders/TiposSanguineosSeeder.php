@@ -17,45 +17,37 @@ class TiposSanguineosSeeder extends Seeder
   {
     DB::table('tipos_sanguineos')->insert([
      [
-      "id" => 1,
+      "nome" => "A+",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "A+"
-     ],[
-      "id" => 2,
+      "updated_at" => now()
+     ], [
+      "nome" => "B+",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "B+"
-     ],[
-      "id" => 3,
+      "updated_at" => now()
+     ], [
+      "nome" => "O+",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "O+"
-     ],[
-      "id" => 4,
+      "updated_at" => now()
+     ], [
+      "nome" => "AB+",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "AB+"
-     ],[
-      "id" => 5,
+      "updated_at" => now()
+     ], [
+      "nome" => "A-",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "A-"
-     ],[
-      "id" => 6,
+      "updated_at" => now()
+     ], [
+      "nome" => "B-",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "B-"
-     ],[
-      "id" => 7,
+      "updated_at" => now()
+     ], [
+      "nome" => "O-",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "O-"
-     ],[
-      "id" => 8,
+      "updated_at" => now()
+     ], [
+      "nome" => "AB-",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "AB-"
+      "updated_at" => now()
      ]
     ]);
   }

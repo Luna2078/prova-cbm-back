@@ -13,7 +13,7 @@ return new class extends Migration {
   public function up()
   {
     Schema::create('formacao', function (Blueprint $table) {
-      $table->id()->primary();
+      $table->integer('id', true);
       $table->integer('instituicao_id');
       $table->foreign('instituicao_id')->references('id')->on('instituicoes')
        ->onUpdate('RESTRICT')->onDelete('RESTRICT');

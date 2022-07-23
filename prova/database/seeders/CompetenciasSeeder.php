@@ -17,45 +17,37 @@ class CompetenciasSeeder extends Seeder
   {
     DB::table('competencias')->insert([
      [
-      "id" => 1,
+      "nome" => "php",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "php"
+      "updated_at" => now()
      ],[
-      "id" => 2,
+      "nome" => "java",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "java"
+      "updated_at" => now()
      ],[
-      "id" => 3,
+      "nome" => "typescript",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "typescript"
+      "updated_at" => now()
      ],[
-      "id" => 4,
+      "nome" => "angular",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "angular"
+      "updated_at" => now()
      ],[
-      "id" => 5,
+      "nome" => "react",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "react"
+      "updated_at" => now()
      ],[
-      "id" => 6,
+      "nome" => "ruby",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "ruby"
+      "updated_at" => now()
      ],[
-      "id" => 7,
+      "nome" => "vue",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "vue"
+      "updated_at" => now()
      ],[
-      "id" => 8,
+      "nome" => "node",
       "created_at" => now(),
-      "updated_at" => now(),
-      "nome" => "node-"
+      "updated_at" => now()
      ]
     ]);
   }
