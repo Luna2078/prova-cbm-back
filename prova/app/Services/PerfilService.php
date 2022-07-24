@@ -6,9 +6,11 @@ use App\DTO\ExperienciaDTO;
 use App\DTO\FormacaoDTO;
 use App\DTO\PerfilDTO;
 use App\Models\Experiencia;
+use App\Models\Formacao;
 use App\Models\Perfil;
 use Exception;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 
 class PerfilService
 {
@@ -22,13 +24,19 @@ class PerfilService
    */
   public function fluxoPerfil(PerfilDTO $perfilDTO): PerfilDTO
   {
-    if (!($perfilDTO->data_nascimento->age >= 18)) {
-      throw new Exception('A idade precisa ser superior a 18 anos.', 404);
-    }
-    $this->cadastrarPerfil($perfilDTO);
-    $this->cadastrarExperiencia($perfilDTO->experiencias);
-    $this->cadastrarFormacao($perfilDTO->formacao);
-    return $perfilDTO;
+    return DB::transaction(function () use($perfilDTO){
+      if (!($perfilDTO->data_nascimento->age >= 18)) {
+        throw new Exception('A idade precisa ser superior a 18 anos.', 404);
+      }
+      try {
+        $novoPerfil = $this->cadastrarPerfil($perfilDTO);
+        $this->cadastrarExperiencia($perfilDTO->experiencias,$novoPerfil->id);
+        $this->cadastrarFormacao($perfilDTO->formacao,$novoPerfil->id);
+      } catch (Exception $e){
+        throw new Exception($e->getMessage());
+      }
+      return $perfilDTO;
+    });
   }
   
   public function apagarPerfil(int $perfil_id): bool
@@ -36,10 +44,10 @@ class PerfilService
     return Perfil::query()->find($perfil_id)->delete();
   }
   
-  public function atualizarPerfil(PerfilDTO $perfilDTO, int $perfil_id)
+  public function atualizarPerfil(array $dados, int $perfil_id)
   {
     $perfil = Perfil::query()->find($perfil_id);
-    $perfil->update($perfilDTO->toArray());
+    $perfil->update($dados);
     return $perfil;
   }
   
@@ -68,23 +76,30 @@ class PerfilService
      'telefone' => $this->formatarDados($perfilDTO->telefone)])->get()->first();
   }
   
-  private function cadastrarExperiencia(array $experiencoesArray): array
+  private function cadastrarExperiencia(array $experiencoesArray,int $perfil_id): array
   {
     $experienciasDTO = [];
     /** @var ExperienciaDTO $experiencia */
     foreach ($experiencoesArray as $experiencia) {
-      $experienciasDTO[] = Experiencia::query()->insert($experiencia->toArray());
+      $experiencia['perfil_id'] = $perfil_id;
+      $experienciasDTO[] = Experiencia::query()->insert($experiencia);
     }
     return $experienciasDTO;
   }
   
-  private function cadastrarFormacao(array $formacoesArray):array
+  private function cadastrarFormacao(array $formacoesArray,int $perfil_id):array
   {
     $formacoesDTO = [];
     /** @var FormacaoDTO $formacao */
     foreach ($formacoesArray as $formacao) {
-      $formacoesDTO[] = Experiencia::query()->insert($formacao->toArray());
+      $formacao['perfil_id'] = $perfil_id;
+      $formacoesDTO[] = Formacao::query()->insert($formacao);
     }
     return $formacoesDTO;
+  }
+  
+  public function pegarPerfil(int $perfil_id)
+  {
+    return Perfil::query()->with(['tipoSanguineo','signo','competencias','experiencia','formacao'])->find($perfil_id);
   }
 }

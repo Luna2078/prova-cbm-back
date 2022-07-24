@@ -117,8 +117,11 @@
       <path value="$PROJECT_DIR$/prova/vendor/doctrine/event-manager" />
       <path value="$PROJECT_DIR$/prova/vendor/doctrine/deprecations" />
       <path value="$PROJECT_DIR$/prova/vendor/psr/cache" />
-      <path value="$PROJECT_DIR$/prova/vendor/thiagocfn/inscricaoestadual" />
-      <path value="$PROJECT_DIR$/prova/vendor/geekcom/validator-docs" />
+      <path value="$PROJECT_DIR$/prova/vendor/spatie/db-dumper" />
+      <path value="$PROJECT_DIR$/prova/vendor/spatie/laravel-backup" />
+      <path value="$PROJECT_DIR$/prova/vendor/spatie/laravel-package-tools" />
+      <path value="$PROJECT_DIR$/prova/vendor/spatie/laravel-signal-aware-command" />
+      <path value="$PROJECT_DIR$/prova/vendor/spatie/temporary-directory" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

@@ -123,8 +123,11 @@
       <excludeFolder url="file://$MODULE_DIR$/prova/vendor/doctrine/event-manager" />
       <excludeFolder url="file://$MODULE_DIR$/prova/vendor/doctrine/deprecations" />
       <excludeFolder url="file://$MODULE_DIR$/prova/vendor/psr/cache" />
-      <excludeFolder url="file://$MODULE_DIR$/prova/vendor/thiagocfn/inscricaoestadual" />
-      <excludeFolder url="file://$MODULE_DIR$/prova/vendor/geekcom/validator-docs" />
+      <excludeFolder url="file://$MODULE_DIR$/prova/vendor/spatie/db-dumper" />
+      <excludeFolder url="file://$MODULE_DIR$/prova/vendor/spatie/laravel-backup" />
+      <excludeFolder url="file://$MODULE_DIR$/prova/vendor/spatie/laravel-package-tools" />
+      <excludeFolder url="file://$MODULE_DIR$/prova/vendor/spatie/laravel-signal-aware-command" />
+      <excludeFolder url="file://$MODULE_DIR$/prova/vendor/spatie/temporary-directory" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
