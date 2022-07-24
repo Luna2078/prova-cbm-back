@@ -7,7 +7,6 @@ use Carbon\Carbon;
 class ExperienciaDTO
 {
   public function __construct(
-   readonly int $perfil_id,
    readonly string $empresa,
    readonly Carbon $inicio,
    readonly bool $atual_trabalho,
@@ -20,7 +19,6 @@ class ExperienciaDTO
   public function toArray()
   {
     return [
-     'perfil_id' => $this->perfil_id,
      'empresa' => $this->empresa,
      'inicio' => $this->inicio,
      'atual_trabalho' => $this->atual_trabalho,
