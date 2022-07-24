@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
+ * @property int $id
  * @property TiposSanguineoEnum $tipos_sanguineo_id
  * @property SignoEnum $signo_id
  * @property string $cpf
@@ -50,8 +51,9 @@ class Perfil extends Model
    'updated_at',
    'tipoSanguineo',
    'signo',
-   'competenciaPerfis',
-   'experiencia'
+   'competencias',
+   'experiencia',
+   'formacao'
   ];
   protected $casts = [
    'tipos_sanguineo_id' => TiposSanguineoEnum::class,
@@ -69,13 +71,18 @@ class Perfil extends Model
     return $this->hasOne(Signo::class, 'id', 'signo_id');
   }
   
-  public function competenciaPerfis()
+  public function competencias()
   {
-    return $this->belongsToMany(CompetenciaPerfis::class, 'competencias_perfis');
+    return $this->belongsToMany(Competencia::class, 'competencias_perfis');
   }
   
   public function experiencia()
   {
     return $this->hasMany(Experiencia::class);
+  }
+  
+  public function formacao()
+  {
+    return $this->hasMany(Formacao::class);
   }
 }

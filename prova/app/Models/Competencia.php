@@ -14,11 +14,11 @@ class Competencia extends Model
   protected $visible = [
    'id',
    'nome',
-   'competenciaPerfis'
+   'perfis'
   ];
   
-  public function competenciaPerfis()
+  public function perfis()
   {
-    return $this->belongsToMany(CompetenciaPerfis::class, 'competencias_perfis');
+    return $this->belongsToMany(Perfil::class,'competencias_perfis');
   }
 }
