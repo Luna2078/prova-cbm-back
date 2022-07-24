@@ -19,10 +19,11 @@ return new class extends Migration {
        ->onUpdate('RESTRICT')->onDelete('RESTRICT');
       $table->string('empresa',45);
       $table->date('inicio');
-      $table->date('fim');
+      $table->date('fim')->nullable();
       $table->boolean('atual_trabalho');
       $table->string('cargo',255);
       $table->timestamps();
+      $table->softDeletes();
     });
   }
   

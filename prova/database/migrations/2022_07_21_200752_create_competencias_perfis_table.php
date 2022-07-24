@@ -21,6 +21,7 @@ return new class extends Migration {
       $table->foreign('perfil_id')->references('id')->on('perfis')
        ->onUpdate('RESTRICT')->onDelete('RESTRICT');
       $table->timestamps();
+      $table->softDeletes();
     });
   }
   

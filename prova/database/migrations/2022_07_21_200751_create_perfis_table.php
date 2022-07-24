@@ -25,8 +25,9 @@ return new class extends Migration {
       $table->date('data_nascimento');
       $table->string('email', 45);
       $table->string('telefone', 45);
-      $table->text('resumo');
+      $table->text('resumo')->nullable();
       $table->timestamps();
+      $table->softDeletes();
     });
   }
   

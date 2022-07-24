@@ -22,6 +22,7 @@ return new class extends Migration {
        ->onUpdate('RESTRICT')->onDelete('RESTRICT');
       $table->string('nome',255);
       $table->timestamps();
+      $table->softDeletes();
     });
   }
   
