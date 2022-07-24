@@ -9,12 +9,8 @@ use Illuminate\Http\Response;
 
 class TipoSanguineos extends Controller
 {
-  public function __construct(private readonly TipoSanguineoService $service)
+  public function __invoke(TipoSanguineoService $service): JsonResponse
   {
-  }
-  
-  public function __invoke(): JsonResponse
-  {
-   return response()->json([$this->service->listarTiposSanguineos()], Response::HTTP_OK);
+   return response()->json($service->listarTiposSanguineos());
   }
 }

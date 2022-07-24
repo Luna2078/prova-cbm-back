@@ -9,12 +9,8 @@ use Illuminate\Http\Response;
 
 class Instituicoes extends Controller
 {
-  public function __construct(private readonly InstituicoesService $service)
+  public function __invoke(InstituicoesService $service): JsonResponse
   {
-  }
-  
-  public function __invoke(): JsonResponse
-  {
-   return response()->json([$this->service->listarInstituicoes()], Response::HTTP_OK);
+   return response()->json($service->listarInstituicoes());
   }
 }

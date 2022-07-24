@@ -9,12 +9,8 @@ use Illuminate\Http\Response;
 
 class Signo extends Controller
 {
-  public function __construct(private readonly SignoService $service)
+  public function __invoke(SignoService $service): JsonResponse
   {
-  }
-  
-  public function __invoke(): JsonResponse
-  {
-   return response()->json([$this->service->listarSignos()], Response::HTTP_OK);
+   return response()->json($service->listarSignos());
   }
 }
