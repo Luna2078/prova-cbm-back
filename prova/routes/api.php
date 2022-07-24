@@ -23,7 +23,11 @@ Route::prefix('prova')->group(function () {
   Route::get('tipo-sanguineos', TipoSanguineos::class);
   Route::get('instituicoes', Instituicoes::class);
   Route::get('competencias', Competencias::class);
-  Route::get('perfis', [PerfilController::class,'listarPerfis']);
-  Route::post('perfis', [PerfilController::class,'criarPerfil']);
-  Route::delete('perfis', [PerfilController::class,'apagarPerfil']);
+  Route::controller(PerfilController::class)->group(function () {
+    Route::get('perfis','listar');
+    Route::get('perfis/{id}','pegarPerfil');
+    Route::post('perfis','criar');
+    Route::delete('perfis/{id}','apagar');
+    Route::put('perfis/{id}','atualizar');
+  });
 });
