@@ -42,6 +42,8 @@ A prova possui 9 rotas, tendo como prefixo 'prova/'. A api roda na porta 8000. A
 	"resumo": "Quero trabalhar."
 }
 
+Os campos de experiencia, experiencia.fim, como no body acima, e formacao podem estar vazios. Ex.: "experiencia": [] Ex.2: "formacao": []
+
 ## Body do PUT de perfil
 
 O body abaixo é só um exemplo e é possível mudar os outros campos:
