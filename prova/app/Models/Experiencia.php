@@ -46,7 +46,8 @@ class Experiencia extends Model
    'perfil'
   ];
   protected $casts = [
-   'inicio', 'fim' => 'datetime',
+   'inicio' => 'datetime',
+   'fim' => 'datetime',
    'atual_trabalho' => 'bool'
   ];
   

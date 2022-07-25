@@ -11,6 +11,9 @@ class Signo extends Model
   
   protected $table = 'signos';
   protected $primaryKey = 'id';
+  protected $fillable = [
+   'nome'
+  ];
   protected $visible = [
    'id',
    'nome'

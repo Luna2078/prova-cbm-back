@@ -7,9 +7,12 @@ use Illuminate\Contracts\Pagination\Paginator;
 
 class InstituicoesService
 {
+  public function __construct(private readonly Instituicao $instituicao)
+  {
+  }
   public function listarInstituicoes(): Paginator
   {
-    return Instituicao::query()->simplePaginate();
+    return $this->instituicao->newQuery()->simplePaginate();
   }
   
 }

@@ -11,6 +11,9 @@ class Instituicao extends Model
   
   protected $table = 'instituicoes';
   protected $primaryKey = 'id';
+  protected $fillable = [
+   'nome'
+  ];
   protected $visible = [
    'id',
    'nome'

@@ -11,6 +11,9 @@ class TipoSanguineo extends Model
   
   protected $table = 'tipos_sanguineos';
   protected $primaryKey = 'id';
+  protected $fillable = [
+   'nome'
+  ];
   protected $visible = [
    'id',
    'nome'

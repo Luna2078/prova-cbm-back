@@ -11,6 +11,9 @@ class Competencia extends Model
   
   protected $table = 'competencias';
   protected $primaryKey = 'id';
+  protected $fillable = [
+   'nome'
+  ];
   protected $visible = [
    'id',
    'nome',
