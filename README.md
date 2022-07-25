@@ -1,86 +1,63 @@
-# Prova CBMSE 2022
+# Api
 
-Para concorrer a vaga o candidato terá que desenvolver uma aplicação api-rest 
-## Em qualquer framework/linguagem.
-
-
-### Tecnologias Recomendadas
-- PHP
-- Laravel
-- Cakephp
-
-
-## Instruções da prova
-
-- O candidato deve fazer um **fork** desse repositório e criar sua estrutura de pastas.
-- Existe uma pasta **db** onde existe o DER do banco e o SQL com o schema e os inserts.
-- Após o projeto pronto o candidato deve fazer o *commit e push* para o seu repositório **não sendo necessário** solicitar um **pull-request** basta apenas responder o email _[lima.silva@sergipetec.org.br]()_ com assunto prova finalizada e o link do git
-
-
-## Projeto
-
-- O Candidato deve criar uma API REST com as seguintes rotas
-  - /signos  - GET
-  - /tipo-sanguineos - GET
-  - /instituicoes - GET
-  - /competencias - GET
-  - /perfis - GET
-  - /perfis - POST
-  - /perfis - DELETE
-  - /perfis - PUT
-- Regras do request:
-  - **CPF** deve conter válidição e quando mandado com mascara deve ser retirada.
-  - **Data de Nascimento** não pode permitir pessoas menores de 18 anos
-  - **E-mail** deve ter validação de tipo
-  - **Formação** pode ser mais de uma
-  - **Experiência** pode ser mais de uma
-  - **Competencia** pode ser mais de uma
-  - **Sobre** é campo texto livre
-  - **Todos os campos são obrigatórios !!!!!**
+A prova possui 9 rotas, tendo como prefixo 'prova/'. A api roda na porta 8000. A rota fica por exemplo: 'localhost:8000/api/prova/signos'
+- Retorna todos os signos - GET 'signos'
+- Retorna todos os tipos sanguíneos - GET 'tipo-sanguineos'
+- Retorna todas as instituições - GET 'instituicoes'
+- Retorna todas as competências - GET 'competencias'
+- Retorna todos os perfis cadastrados - GET 'perfis'
+- Retorna um perfil, buscando pelo ID - GET 'perfis/{id}'
+- Cria um perfil com o body abaixo - POST 'perfis'
+- Atualiza um perfil com as informações novas, com o ID - PUT 'perfis/{id}'
+- Deleta um perfil com ID - DELETE 'perfis/{id}'
 
 
 
-## Oque será avaliado?
-O desafio será avaliado através dos seguintes critérios.
 
-- Código bem estruturado
-- Habilidade com framework(se utilizar)
-- Habilidade em documentação(swagger)
-- Arquitetura do projeto
-- Migrations
-- Utilização de componentes,libs
-- Testes unitários
+# Body do POST de criar perfil
 
-## Oque seria um plus
-- Teste de integração (cypress)
-- Docker
-- Docker-compose
+{
+	"tipos_sanguineo_id": 4,
+	"signo_id": 2,
+	"cpf": "168.396.435-73",
+	"nome": "Martin Vitor Ruan Pires",
+	"data_nascimento": "1999-01-11",
+	"email": "martinvitorpires@heinrich.com.br",
+	"telefone": "(79) 98409-3762",
+	"experiencia": [
+		{
+			"empresa": "CBM",
+			"inicio": "2020-05-20",
+			"fim":"",
+			"atual_trabalho": true,
+			"cargo": "junior"
+		}
+	],
+	"formacao": [
+		{
+			"instituicao_id": 4,
+			"nome": "Ciência Da Computação"
+		}
+	],
+	"resumo": "Quero trabalhar."
+}
 
-## Boas Práticas
+## Body do PUT de perfil
 
-- O código está bem estruturado?
-- O código está fluente na linguagem?
-- O código faz o uso correto de Design Patterns?
+O body abaixo é só um exemplo e é possível mudar os outros campos:
+{
+	"resumo": "Maria Joaquina"
+}
 
-## Documentação
+## Docker e MySQL
 
-- O código foi entregue com um arquivo de README claro de como se guiar?
-- O código possui comentários pertinentes?
-- Os commits são pequenos e consistentes?
-- As mensagens de commit são claras?
+Para executar o banco MySQL e rodar o projeto, primeiro mude para a pasta do projeto, 'cd prova/', após isso, digite 'make deploy_prova', para rodar os containers do back e do banco com o docker. 
 
-## Código Limpo
+## Migrations e Seeders
 
-- O código possibilita expansão para novas funcionalidades?
-- O código é Don't Repeat Yourself?
-- O código é fácil de compreender?
+Após o build dos containers, é necessário entrar no container com 'docker exec -it back-prova bash'. Após isso, executar 'php artisan migrate:fresh --seed', para gerar um banco novo e povoar o banco.
 
-## Links úteis
+## PEST
 
-- [Design Patterns](https://refactoring.guru/pt-br/design-patterns/php)
-- [Laravel](https://laravel.com/)
-- [Swagger](https://editor.swagger.io/)
-- [Testes unitarios](https://pestphp.com/)
-- [PHP+Docker](https://blog.impulso.network/docker-e-docker-compose-com-php/)
-- [Git-flow](https://medium.com/trainingcenter/utilizando-o-fluxo-git-flow-e63d5e0d5e04)
-- [Semantic Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+Para rodar todos os testes feito com o PEST, é necessário executar o comando 'php artisan test'. É possível também executar os testes em paralelo com o comando, 'php artisan test --parallel'.
+
